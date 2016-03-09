@@ -1,0 +1,32 @@
+{
+  "name": "react-todo-list",
+  "version": "0.0.1",
+  "description": "build a todo list app use React and Webpack.",
+  "main": "no",
+  "scripts": {
+    "test": "no"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caiyongmin/react-todo-list.git"
+  },
+  "keywords": [
+    "react",
+    "webpack",
+    "todo"
+  ],
+  "author": "645589265@qq.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/caiyongmin/react-todo-list/issues"
+  },
+  "homepage": "https://github.com/caiyongmin/react-todo-list#readme",
+  "dependencies": {
+    "classnames": "^2.2.3",
+    "history": "^2.0.1",
+    "react": "^0.14.7",
+    "react-addons-css-transition-group": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-router": "^2.0.0"
+  }
+}
