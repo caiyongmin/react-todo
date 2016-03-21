@@ -6,10 +6,11 @@ module.exports = {
 	},
 	output: {
 		path: path.resolve(__dirname, 'build'),
+		publicPath: '/assets/',
 		filename: '[name].js'
 	},
 	resolve: {
-		extension: ['', '.js', '.jsx']
+		extensions: ['', '.js', '.jsx']
 	},
 	module: {
 		loaders: [

@@ -2,11 +2,11 @@ var React = require('react')
 var ReactDOM = require('react-dom')
 var Link = require('react-router').Link
 
-var AddItem = require('./component/additem')
+var AddItem = require('../components/additem')
 
-var Storage = require('./lib/localstorage')()
-var util = require('./lib/util')
-var moment = util.moment()
+var Storage = require('../lib/localstorage')()
+var util = require('../lib/util')
+var moment = util.moment
 
 var AppRoute = React.createClass({
 	getInitialState: function () {
@@ -35,7 +35,8 @@ var AppRoute = React.createClass({
 
 	addItem: function (name, desc) {
 		var nowTime = new Date()
-		var created = moment.Y + '年' + moment.M + '月' + moment.D + '日 ' + moment.H + ':' + moment.m + ':' + moment.s
+		nowTime = moment(nowTime)
+		var created = nowTime.Y + '年' + nowTime.M + '月' + nowTime.D + '日 ' + nowTime.H + ':' + nowTime.m + ':' + nowTime.s
 		var tasks = this.state.tasks
 		var taskId = tasks[0] ? tasks[0].id + 1 : 1
 		var task = {
@@ -55,7 +56,8 @@ var AppRoute = React.createClass({
 
 	finishItem: function (id, thought) {
 		var nowTime = new Date()
-		var finished = moment.Y + '年' + moment.M + '月' + moment.D + '日 ' + moment.H + ':' + moment.m + ':' + moment.s
+		nowTime = moment(nowTime)
+		var finished = nowTime.Y + '年' + nowTime.M + '月' + nowTime.D + '日 ' + nowTime.H + ':' + nowTime.m + ':' + nowTime.s
 		var tasks = this.state.tasks
 		var task = null
 
@@ -85,7 +87,7 @@ var AppRoute = React.createClass({
 	render: function () {
 		return (
 			<div>
-				<header>
+				<header className="header">
 					<h2>Todo List</h2>
 					<div className="fa fa-plus"></div>
 				</header>
@@ -98,13 +100,13 @@ var AppRoute = React.createClass({
 				<nav className="menu">
 					<ul>
 						<li>
-							<Link to={`/tasks`} activeClassName="active" className={'fa fa-tasks ' + window.location.pathname == '/' ? 'active' : ''}></Link>
+							<Link to={`/tasks`} className={'fa fa-tasks ' + window.location.pathname == '/' ? 'active' : ''} activeClassName="active"></Link>
 						</li>
 						<li>
 							<Link to={`/tasks/complete`} activeClassName="active" className="fa fa-check-circle"></Link>
 						</li>
 						<li>
-							<Link to={`/tasks/uncomplete`} activeClassName="active" className="fa fa-check-o"></Link>
+							<Link to={`/tasks/uncomplete`} activeClassName="active" className="fa fa-clock-o"></Link>
 						</li>
 					</ul>
 				</nav>

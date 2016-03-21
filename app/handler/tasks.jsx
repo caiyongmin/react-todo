@@ -1,12 +1,12 @@
 var React = require('react')
 
-var Item = require('../component/item')
+var Item = require('../components/item')
 
 var Tasks = React.createClass({
 	render: function () {
 		var tasks = this.props.tasks
 		var typeMap = {uncomplete: 0, complement: 1, all: 2}
-		var type = typeMap[this.params.type] || 2
+		var type = typeMap[this.props.params.type] || 2
 
 		if (!tasks.length) {
 			if (type === 2) {
@@ -33,7 +33,7 @@ var Tasks = React.createClass({
 				return task.type === type
 			})
 			var tasksDOM = tasks.map(function (task, index) {
-				return <Item task={task}>
+				return '<p>item</p>'
 			})
 			return (
 				<div className="tasks wrap">

@@ -4,6 +4,7 @@ var Router = require('react-router').Router
 var Route = require('react-router').Route
 var IndexRoute = require('react-router').IndexRoute
 var Link = require('react-router').Link
+var useRouterHistory = require('react-router').useRouterHistory
 var createHashHistory = require('history').createHashHistory
 
 var AppRoute = require('./router/approute')
@@ -13,10 +14,10 @@ var FontAwesome = require('./css/font-awesome.min.css')
 var IndexCSS = require('./css/index.css')
 var NormalizeCSS = require('./css/normalize.css')
 
-var history = createHashHistory({queryKey: false})
+var appHistory = useRouterHistory(createHashHistory)({ queryKey: false })
 
 ReactDOM.render(
-	<Router history={history}>
+	<Router history={appHistory}>
 		<Route path='/' component={AppRoute}>
 			<IndexRoute component={Tasks} />
 			<Route path='tasks(/:type)' component={Tasks} />
