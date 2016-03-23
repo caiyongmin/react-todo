@@ -2,38 +2,43 @@ var React = require('react')
 
 var Task = React.createClass({
 	onFinishItem: function () {
-		var thought = this.refs.taskThought.value().trim()
+		var thought = this.refs.taskThought.value.trim()
+		var id = this.refs.taskId.value
 
 		if (!thought) {
 			alert('Please input task thought')
-			this.refs.thought.focus()
+			this.refs.taskThought.focus()
 			return
 		}
 
 		this.refs.taskThought.value = ''
-		this.props.finishItem(this.props.task.id, thought) 
+		this.props.finishItem(id, thought) 
 	},
 
 	render: function () {
 		var tasks = this.props.tasks
-		var id = this.params.id
+		var id = this.props.params.id
 		var task = null
 
+		// debugger
+
 		if (!id) {
-			return
+			return <div>This is no id params.</div>
 		}
 
 		tasks.forEach(function (item, index) {
-			if (item.id === id) {
+			if (item.id == id) {
 				task = item
 			}
 		})
 
+		// debugger
+
 		if (!task) {
-			return
+			return <div>This is no task data.</div>
 		}
 
-		if (task.type === 0) {
+		if (task.state === 0) {
 			return (
 				<div className="wrap single-task">
 					<div className="task-header">
@@ -44,11 +49,12 @@ var Task = React.createClass({
 						{task.desc}
 					</div>
 					<div className="task-state">
-						<p><span>State: </span><i className="fa fa-check-o unfinished"></i></p>
+						<p><span>State: </span><i className="fa fa-clock-o unfinished"></i></p>
 					</div>
 					<div className="task-over">
 						<label>Thought: </label>
-						<textarea refs="taskThought"></textarea>
+						<input type="hidden" ref="taskId" value={task.id} />
+						<textarea ref="taskThought"></textarea>
 						<button onClick={this.onFinishItem}>Done</button>
 					</div>
 				</div>

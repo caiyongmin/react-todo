@@ -67,7 +67,7 @@ var AppRoute = React.createClass({
 		var task = null
 
 		tasks.forEach(function (item, index) {
-			if (item.id === id) {
+			if (item.id == id) {
 				task = item
 			}
 		})
@@ -106,7 +106,7 @@ var AppRoute = React.createClass({
 				<nav className="menu">
 					<ul>
 						<li>
-							<Link to={`/tasks`} activeClassName="active" className={'fa fa-tasks ' + (window.location.pathname == '/' ? '' : '')}></Link>
+							<Link to={`/tasks`} activeClassName="active" className={'fa fa-tasks ' + (window.location.hash == '#/' ? 'active' : '')}></Link>
 						</li>
 						<li>
 							<Link to={`/tasks/complete`} activeClassName="active" className="fa fa-check-circle"></Link>
