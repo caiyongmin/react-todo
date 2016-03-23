@@ -38,6 +38,10 @@ var AppRoute = React.createClass({
 		nowTime = moment(nowTime)
 		var created = nowTime.Y + '年' + nowTime.M + '月' + nowTime.D + '日 ' + nowTime.H + ':' + nowTime.m + ':' + nowTime.s
 		var tasks = this.state.tasks
+		if (!Array.isArray(tasks)) {
+			alert('tasks is expacted be a Array.')
+			return
+		}
 		var taskId = tasks[0] ? tasks[0].id + 1 : 1
 		var task = {
 			id: taskId,

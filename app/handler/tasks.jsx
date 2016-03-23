@@ -25,7 +25,18 @@ var Tasks = React.createClass({
 			})
 		}
 
-		if (!tasks.length) {
+		if (Array.isArray(tasks) && tasks.length) {
+			var tasksDOM = tasks.map(function (task, index) {
+				return (<Item key={task.id} task={task}/>)
+			})
+			return (
+				<div className="tasks wrap">
+					<ul>
+						{tasksDOM}
+					</ul>
+				</div>
+			)
+		} else {
 			switch (type) {
 				case 0:
 					return (
@@ -49,17 +60,6 @@ var Tasks = React.createClass({
 					)
 					break
 			}
-		} else {
-			var tasksDOM = tasks.map(function (task, index) {
-				return (<Item task={task}>)
-			})
-			return (
-				<div className="tasks wrap">
-					<ul>
-						{tasksDOM}
-					</ul>
-				</div>
-			)
 		}
 	}
 })
