@@ -3,37 +3,31 @@ var React = require('react')
 var Item = require('../components/item')
 
 var Tasks = React.createClass({
+	showPop: function () {
+		this.props.showPop()
+	},
+
 	render: function () {
 		var tasks = this.props.tasks
-		var typeMap = {uncomplete: 0, complement: 1, all: 2}
-		var type = typeMap[this.props.params.type] || 2
+		var typeMap = {
+			'uncomplete': 0,
+			'complete': 1,
+			'all': 2
+		}
+		var type = 2;
+		if (typeof typeMap[this.props.params.type] != 'undefined') {
+			type = typeMap[this.props.params.type]
+		}
 
-		if (!tasks.length) {
-			if (type === 2) {
-				return (
-					<div className="tasks wrap">
-						<h2><span>You have not tasks, you can </span><i className="fa fa-plus"></i><span> this task first!</span></h2>
-					</div>
-				)
-			} else if (type === 0) {
-				return (
-					<div className="tasks wrap">
-						<h2><span>You have no uncompleted tasks. You can </span><i className="fa fa-plus"></i><span> this task first!</span></h2>
-					</div>
-				)
-			} else if (type === 1) {
-				return (
-					<div className="tasks wrap">
-						<h2><span>You have no completed tasks. You can complete the task or </span><i className="fa fa-plus"></i><span> this task first!</span></h2>
-					</div>
-				)
-			}
-		} else {
-			tasks.filter(function (task, index) {
-				return task.type === type
+		if (type !== 2) {
+			tasks = tasks.filter(function (task, index) {
+				return task.state === type
 			})
+		}
+
+		if (Array.isArray(tasks) && tasks.length) {
 			var tasksDOM = tasks.map(function (task, index) {
-				return '<p>item</p>'
+				return (<Item key={task.id} task={task}/>)
 			})
 			return (
 				<div className="tasks wrap">
@@ -42,6 +36,30 @@ var Tasks = React.createClass({
 					</ul>
 				</div>
 			)
+		} else {
+			switch (type) {
+				case 0:
+					return (
+						<div className="tasks wrap">
+							<h2><span>You have no uncompleted tasks. You can </span><i className="fa fa-plus" onClick={this.showPop}></i><span> this task first!</span></h2>
+						</div>
+					)
+					break
+				case 1:
+					return (
+						<div className="tasks wrap">
+							<h2><span>You have no completed tasks. You can complete the task or </span><i className="fa fa-plus" onClick={this.showPop}></i><span> this task first!</span></h2>
+						</div>
+					)
+					break
+				default:
+					return (
+						<div className="tasks wrap">
+							<h2><span>You have not tasks, you can </span><i className="fa fa-plus" onClick={this.showPop}></i><span> this task first!</span></h2>
+						</div>
+					)
+					break
+			}
 		}
 	}
 })

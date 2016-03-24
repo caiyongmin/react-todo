@@ -34,7 +34,7 @@
 
 		return {
 			set: set,
-			get: set,
+			get: get,
 			remove: remove
 		}
 	}

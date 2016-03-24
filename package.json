@@ -4,7 +4,8 @@
   "description": "build a todo list app use React and Webpack.",
   "main": "no",
   "scripts": {
-    "dev": "webpack-dev-server --progress --inline --hot --devtool --colors --content-base build/"
+    "dev": "webpack-dev-server --progress --inline --hot --devtool --colors --content-base build/",
+    "product": "webpack -p --progress --config webpack.production.config.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "babel-preset-react": "^6.5.0",
     "classnames": "^2.2.3",
     "history": "^2.0.1",
+    "open-browser-webpack-plugin": "0.0.2",
     "react": "^0.14.7",
     "react-addons-css-transition-group": "^0.14.7",
     "react-dom": "^0.14.7",

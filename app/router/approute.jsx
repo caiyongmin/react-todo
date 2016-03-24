@@ -38,13 +38,17 @@ var AppRoute = React.createClass({
 		nowTime = moment(nowTime)
 		var created = nowTime.Y + '年' + nowTime.M + '月' + nowTime.D + '日 ' + nowTime.H + ':' + nowTime.m + ':' + nowTime.s
 		var tasks = this.state.tasks
+		if (!Array.isArray(tasks)) {
+			alert('tasks is expacted be a Array.')
+			return
+		}
 		var taskId = tasks[0] ? tasks[0].id + 1 : 1
 		var task = {
 			id: taskId,
 			created: created,
 			name: name,
 			desc: desc,
-			type: 0,
+			state: 0,
 			finished: null,
 			thought: ''
 		}
@@ -52,6 +56,7 @@ var AppRoute = React.createClass({
 		tasks.unshift(task)
 		this.setState({tasks: tasks})
 		Storage.set('tasks', tasks)
+		this.hidePop()
 	},
 
 	finishItem: function (id, thought) {
@@ -62,7 +67,7 @@ var AppRoute = React.createClass({
 		var task = null
 
 		tasks.forEach(function (item, index) {
-			if (item.id === id) {
+			if (item.id == id) {
 				task = item
 			}
 		})
@@ -73,6 +78,7 @@ var AppRoute = React.createClass({
 
 		task.finished = finished
 		task.thought = thought
+		task.state = 1
 
 		tasks.forEach(function (item, index) {
 			if (item.id === id) {
@@ -89,18 +95,18 @@ var AppRoute = React.createClass({
 			<div>
 				<header className="header">
 					<h2>Todo List</h2>
-					<div className="fa fa-plus"></div>
+					<div className="fa fa-plus" onClick={this.showPop}></div>
 				</header>
 				{this.props.children && React.cloneElement(this.props.children, {
 					tasks: this.state.tasks,
 					finishItem: this.finishItem,
 					showPop: this.showPop
 				})}
-				<AddItem addItem={this.additem} thisShowPop={this.state.thisShowPop} hidePop={this.hidePop}></AddItem>
+				<AddItem addItem={this.addItem} thisShowPop={this.state.thisShowPop} hidePop={this.hidePop}></AddItem>
 				<nav className="menu">
 					<ul>
 						<li>
-							<Link to={`/tasks`} className={'fa fa-tasks ' + window.location.pathname == '/' ? 'active' : ''} activeClassName="active"></Link>
+							<Link to={`/tasks`} activeClassName="active" className={'fa fa-tasks ' + (window.location.hash == '#/' ? 'active' : '')}></Link>
 						</li>
 						<li>
 							<Link to={`/tasks/complete`} activeClassName="active" className="fa fa-check-circle"></Link>

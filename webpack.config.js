@@ -1,4 +1,5 @@
 var path = require('path')
+var openBrowserWebpackPlugin = require('open-browser-webpack-plugin')
 
 module.exports = {
 	entry: {
@@ -39,5 +40,10 @@ module.exports = {
 				loader: 'file-loader'
 			}
 		]
-	}
+	},
+	plugins: [
+		new openBrowserWebpackPlugin({
+			'url': 'http://localhost:8080'
+		})
+	]
 }

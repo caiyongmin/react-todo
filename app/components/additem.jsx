@@ -4,7 +4,7 @@ var classNames = require('classnames')
 
 var AddItem = React.createClass({
 	closePop: function () {
-		this.props.hidePop
+		this.props.hidePop()
 	},
 
 	preventEventBubble: function (e) {
@@ -14,8 +14,8 @@ var AddItem = React.createClass({
 	onAddItem: function (e) {
 		e.preventDefault()
 
-		var name = this.refs.taskName.value().trim()
-		var desc = this.refs.taskDesc.value().trim()
+		var name = this.refs.taskName.value.trim()
+		var desc = this.refs.taskDesc.value.trim()
 
 		if (!name) {
 			alert('Please input task name')
@@ -56,8 +56,8 @@ var AddItem = React.createClass({
 					<div className="form-group">
 						<button onClick={this.onAddItem}>Submit</button>
 					</div>
+					<span className="fa fa-close pop-cls" onClick={this.closePop}></span>
 				</div>
-				<span className="fa fa-close pop-cls" onClick={this.closePop}></span>
 			</div>
 		)
 	}
