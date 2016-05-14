@@ -7,7 +7,7 @@
 ;(function () {
 	'use strick'
 
-	var localStorage = window.localStorage
+	let localStorage = window.localStorage
 
 	function storage() {
 		function set(key, value) {
@@ -19,7 +19,7 @@
 		}
 
 		function get(key) {
-			var value = localStorage.getItem(key) || ''
+			let value = localStorage.getItem(key) || ''
 
 			try {
 				return JSON.parse(value)

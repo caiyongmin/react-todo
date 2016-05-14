@@ -1,20 +1,16 @@
-var React = require('react')
-var ReactDOM = require('react-dom')
-var Router = require('react-router').Router
-var Route = require('react-router').Route
-var IndexRoute = require('react-router').IndexRoute
-var Link = require('react-router').Link
-var useRouterHistory = require('react-router').useRouterHistory
-var createHashHistory = require('history').createHashHistory
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {Router, Route, IndexRoute, Link, useRouterHistory} from 'react-router'
+import {createHashHistory} from 'history'
 
-var AppRoute = require('./router/approute')
-var Tasks = require('./handler/tasks')
-var Task = require('./handler/task')
-var FontAwesome = require('./css/font-awesome.min.css')
-var IndexCSS = require('./css/index.css')
-var NormalizeCSS = require('./css/normalize.css')
+import AppRoute from './router/approute'
+import Tasks from './handler/tasks'
+import Task from './handler/task'
+import FontAwesome from './css/font-awesome.min.css'
+import IndexCSS from './css/index.css'
+import NormalizeCSS from './css/normalize.css'
 
-var appHistory = useRouterHistory(createHashHistory)({ queryKey: false })
+let appHistory = useRouterHistory(createHashHistory)({ queryKey: false })
 
 ReactDOM.render(
 	<Router history={appHistory}>

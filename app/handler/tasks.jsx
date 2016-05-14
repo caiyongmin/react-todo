@@ -1,20 +1,25 @@
-var React = require('react')
+import React from 'react'
 
-var Item = require('../components/item')
+import Item from '../components/item'
 
-var Tasks = React.createClass({
-	showPop: function () {
-		this.props.showPop()
-	},
+export default class Tasks extends React.Component {
+  	constructor(props) {
+    	super(props)
+    	this.showPop = this.showPop.bind(this)
+  	}
 
-	render: function () {
-		var tasks = this.props.tasks
-		var typeMap = {
+  	showPop() {
+  		this.props.showPop()
+  	}
+
+  	render() {
+    	let tasks = this.props.tasks
+		let typeMap = {
 			'uncomplete': 0,
 			'complete': 1,
 			'all': 2
 		}
-		var type = 2;
+		let type = 2
 		if (typeof typeMap[this.props.params.type] != 'undefined') {
 			type = typeMap[this.props.params.type]
 		}
@@ -26,7 +31,7 @@ var Tasks = React.createClass({
 		}
 
 		if (Array.isArray(tasks) && tasks.length) {
-			var tasksDOM = tasks.map(function (task, index) {
+			let tasksDOM = tasks.map(function (task, index) {
 				return (<Item key={task.id} task={task}/>)
 			})
 			return (
@@ -41,27 +46,25 @@ var Tasks = React.createClass({
 				case 0:
 					return (
 						<div className="tasks wrap">
-							<h2><span>You have no uncompleted tasks. You can </span><i className="fa fa-plus" onClick={this.showPop}></i><span> this task first!</span></h2>
+							<h2><span>暂时没有未完成任务. 你可以点击 </span><i className="fa fa-plus" onClick={this.showPop}></i><span> 添加任务。</span></h2>
 						</div>
 					)
 					break
 				case 1:
 					return (
 						<div className="tasks wrap">
-							<h2><span>You have no completed tasks. You can complete the task or </span><i className="fa fa-plus" onClick={this.showPop}></i><span> this task first!</span></h2>
+							<h2><span>暂时没有已完成任务. 你可以点击 </span><i className="fa fa-plus" onClick={this.showPop}></i><span> 添加任务，然后完成它。</span></h2>
 						</div>
 					)
 					break
 				default:
 					return (
 						<div className="tasks wrap">
-							<h2><span>You have not tasks, you can </span><i className="fa fa-plus" onClick={this.showPop}></i><span> this task first!</span></h2>
+							<h2><span>暂时没有任务, 你可以点击 </span><i className="fa fa-plus" onClick={this.showPop}></i><span> 添加任务。</span></h2>
 						</div>
 					)
 					break
 			}
 		}
-	}
-})
-
-module.exports = Tasks
+  	}
+}

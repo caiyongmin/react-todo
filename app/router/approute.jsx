@@ -1,49 +1,48 @@
-var React = require('react')
-var ReactDOM = require('react-dom')
-var Link = require('react-router').Link
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {Link} from 'react-router'
 
-var AddItem = require('../components/additem')
+import AddItem from '../components/additem'
+import Storage from '../lib/localstorage'
+import util from '../lib/util'
 
-var Storage = require('../lib/localstorage')()
-var util = require('../lib/util')
-var moment = util.moment
+let moment = util.moment
 
-var AppRoute = React.createClass({
-	getInitialState: function () {
-		return {
-			thisShowPop: false,
-			tasks: []
-		}
-	},
+export default class AppRoute extends React.Component {
+  	constructor() {
+	    super()
+	    this.state = {showAddPop: false, tasks: []}
+	    this.showPop = this.showPop.bind(this)
+	    this.hidePop = this.hidePop.bind(this)
+	    this.addTask = this.addTask.bind(this)
+	    this.finishTask = this.finishTask.bind(this)
+	    this.storage = Storage()
+  	}
 
-	componentDidMount: function () {
-		var tasks = Storage.get('tasks') || []
-		this.setState({tasks: tasks})
-	},
+  	componentDidMount() {
+	  	let tasks = this.storage.get('tasks') || []
+	  	this.setState({'tasks': tasks})
+  	}
 
-	showPop: function () {
-		this.setState({
-			thisShowPop: true
-		})
-	},
+  	showPop() {
+  		this.setState({showAddPop: true})
+  	}
 
-	hidePop: function () {
-		this.setState({
-			thisShowPop: false
-		})
-	},
+  	hidePop() {
+  		this.setState({showAddPop: false})
+  	}
 
-	addItem: function (name, desc) {
-		var nowTime = new Date()
+  	addTask(name, desc) {
+  		let nowTime = new Date()
 		nowTime = moment(nowTime)
-		var created = nowTime.Y + '年' + nowTime.M + '月' + nowTime.D + '日 ' + nowTime.H + ':' + nowTime.m + ':' + nowTime.s
-		var tasks = this.state.tasks
+		let created = nowTime.Y + '年' + nowTime.M + '月' + nowTime.D + '日 ' + nowTime.H + ':' + nowTime.m + ':' + nowTime.s
+		let tasks = this.state.tasks
 		if (!Array.isArray(tasks)) {
 			alert('tasks is expacted be a Array.')
 			return
 		}
-		var taskId = tasks[0] ? tasks[0].id + 1 : 1
-		var task = {
+		let taskId = tasks[0] ? tasks[0].id + 1 : 1
+		let task = {
 			id: taskId,
 			created: created,
 			name: name,
@@ -55,16 +54,16 @@ var AppRoute = React.createClass({
 
 		tasks.unshift(task)
 		this.setState({tasks: tasks})
-		Storage.set('tasks', tasks)
+		this.storage.set('tasks', tasks)
 		this.hidePop()
-	},
+  	}
 
-	finishItem: function (id, thought) {
-		var nowTime = new Date()
+  	finishTask(id, thought) {
+  		let nowTime = new Date()
 		nowTime = moment(nowTime)
-		var finished = nowTime.Y + '年' + nowTime.M + '月' + nowTime.D + '日 ' + nowTime.H + ':' + nowTime.m + ':' + nowTime.s
-		var tasks = this.state.tasks
-		var task = null
+		let finished = nowTime.Y + '年' + nowTime.M + '月' + nowTime.D + '日 ' + nowTime.H + ':' + nowTime.m + ':' + nowTime.s
+		let tasks = this.state.tasks
+		let task = null
 
 		tasks.forEach(function (item, index) {
 			if (item.id == id) {
@@ -87,22 +86,23 @@ var AppRoute = React.createClass({
 		})
 
 		this.setState({tasks: tasks})
-		Storage.set('tasks', tasks)
-	},
+		this.storage.set('tasks', tasks)
+  	}
 
-	render: function () {
-		return (
-			<div>
+  	render() {
+    	return (
+      		<div>
 				<header className="header">
-					<h2>Todo List</h2>
+					<h2>任务清单</h2>
 					<div className="fa fa-plus" onClick={this.showPop}></div>
 				</header>
 				{this.props.children && React.cloneElement(this.props.children, {
 					tasks: this.state.tasks,
-					finishItem: this.finishItem,
-					showPop: this.showPop
+					finishTask: this.finishTask,
+					showPop: this.showPop,
+					hidePop: this.hidePop
 				})}
-				<AddItem addItem={this.addItem} thisShowPop={this.state.thisShowPop} hidePop={this.hidePop}></AddItem>
+				<AddItem addItem={this.addTask} showAddPop={this.state.showAddPop} hidePop={this.hidePop}></AddItem>
 				<nav className="menu">
 					<ul>
 						<li>
@@ -117,8 +117,6 @@ var AppRoute = React.createClass({
 					</ul>
 				</nav>
 			</div>
-		)
-	}
-})
-
-module.exports = AppRoute
+    	)
+  	}
+}
