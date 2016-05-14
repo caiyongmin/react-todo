@@ -43,24 +43,27 @@ export default class AddItem extends React.Component {
   	}
 
   	render() {
-    	let popClass = classNames({'addpop': true, 'show': this.props.showAddPop})
+    	let popClass = classNames({
+    		'model': true,
+    		'model-add-item': true,
+    		'show': this.props.showAddPop})
 
 		return (
 			<div className={popClass} onClick={this.closePop}>
-				<div className="add-input" onClick={this.preventEventBubble}>
-					<h3>来一个任务</h3>
+				<div className="model-body" onClick={this.preventEventBubble}>
+					<h3 className="model-title">新建任务</h3>
 					<div className="form-group">
 						<label>名称: </label>
-						<input type="text" ref="taskName" />
+						<input className="input-text" type="text" ref="taskName" />
 					</div>
 					<div className="form-group">
 						<label>描述: </label>
-						<textarea ref="taskDesc"></textarea>
+						<textarea className="input-textarea" ref="taskDesc"></textarea>
 					</div>
 					<div className="form-group">
-						<button onClick={this.onAddItem}>确认</button>
+						<button className="btn btn-submit" onClick={this.onAddItem}>确认</button>
 					</div>
-					<span className="fa fa-close pop-cls" onClick={this.closePop}></span>
+					<span className="fa fa-close model-close" onClick={this.closePop}></span>
 				</div>
 			</div>
 		)

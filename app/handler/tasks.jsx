@@ -35,8 +35,8 @@ export default class Tasks extends React.Component {
 				return (<Item key={task.id} task={task}/>)
 			})
 			return (
-				<div className="tasks wrap">
-					<ul>
+				<div className="task-list-wrap">
+					<ul className="task-list">
 						{tasksDOM}
 					</ul>
 				</div>
@@ -45,22 +45,22 @@ export default class Tasks extends React.Component {
 			switch (type) {
 				case 0:
 					return (
-						<div className="tasks wrap">
-							<h2><span>暂时没有未完成任务. 你可以点击 </span><i className="fa fa-plus" onClick={this.showPop}></i><span> 添加任务。</span></h2>
+						<div className="task-list-wrap">
+							<p className="tip"><span>暂时没有未完成任务. 你可以点击 </span><i className="fa fa-plus" onClick={this.showPop}></i><span> 添加任务。</span></p>
 						</div>
 					)
 					break
 				case 1:
 					return (
-						<div className="tasks wrap">
-							<h2><span>暂时没有已完成任务. 你可以点击 </span><i className="fa fa-plus" onClick={this.showPop}></i><span> 添加任务，然后完成它。</span></h2>
+						<div className="task-list-wrap">
+							<p className="tip"><span>暂时没有已完成任务. 你可以点击 </span><i className="fa fa-plus" onClick={this.showPop}></i><span> 添加任务，然后完成它。</span></p>
 						</div>
 					)
 					break
 				default:
 					return (
-						<div className="tasks wrap">
-							<h2><span>暂时没有任务, 你可以点击 </span><i className="fa fa-plus" onClick={this.showPop}></i><span> 添加任务。</span></h2>
+						<div className="task-list-wrap">
+							<p className="tip"><span>暂时没有任务, 你可以点击 </span><i className="fa fa-plus" onClick={this.showPop}></i><span> 添加任务。</span></p>
 						</div>
 					)
 					break

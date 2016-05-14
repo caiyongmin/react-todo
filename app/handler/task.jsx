@@ -41,39 +41,57 @@ export default class Task extends React.Component {
 
 		if (task.state === 0) {
 			return (
-				<div className="wrap single-task">
-					<div className="task-header">
-						<h3>{task.name}</h3>
-						<p>{task.created}</p>
+				<div className="single-task">
+					<div className="single-task-header">
+						<h3 className="single-task-title">{task.name}</h3>
 					</div>
-					<div className="task-desc">
-						{task.desc}
+					<div className="single-task-meta">
+						<span className="label">创建时间：</span>
+						<span className="single-task-created">{task.created}</span>
 					</div>
-					<div className="task-state">
-						<p><span>状态: </span><i className="fa fa-clock-o unfinished"></i> 未完成</p>
+					<div className="single-task-meta">
+						<span className="label">描述：</span>
+						<span className="single-task-desc">{task.desc}</span>
 					</div>
-					<div className="task-over">
-						<label>想说的话: </label>
-						<input type="hidden" ref="taskId" value={task.id} />
-						<textarea ref="taskThought"></textarea>
-						<button onClick={this.onFinishItem}>确认</button>
+					<div className="single-task-meta">
+						<span className="label">状态: </span>
+						<span className="single-task-state"><i className="fa fa-clock-o state-unfinished"></i> 未完成</span>
+					</div>
+					<div className="single-task-meta">
+						<span className="label">想说的话: </span>
+						<div className="single-task-thought-input">
+							<input type="hidden" ref="taskId" value={task.id} />
+							<textarea className="input-textarea" ref="taskThought"></textarea>
+							<button className="btn btn-submit" onClick={this.onFinishItem}>确认</button>
+						</div>
 					</div>
 				</div>
 			)
 		} else {
 			return (
-				<div className="wrap single-task">
-					<div className="task-header">
-						<h3>{task.name}</h3>
-						<p>{task.created}</p>
+				<div className="single-task">
+					<div className="single-task-header">
+						<h3 className="single-task-title">{task.name}</h3>
 					</div>
-					<div className="task-desc">
-						{task.desc}
+					<div className="single-task-meta">
+						<span className="label">创建时间：</span>
+						<span className="single-task-created">{task.created}</span>
 					</div>
-					<div className="task-state">
-						<p><span>状态: </span><i className="fa fa-check-square-o finished"></i> 已完成</p>
-						<p><span>完成时间: </span><span>{task.finished}</span></p>
-						<p><span>想说的话: </span><span>{task.thought}</span></p>
+					<div className="single-task-meta">
+						<span className="label">描述：</span>
+						<span className="single-task-desc">{task.desc}</span>
+					</div>
+					<div className="single-task-meta">
+						<span className="label">状态: </span>
+						<span className="single-task-state"><i className="fa fa-check-square-o state-finished"></i> 已完成</span>
+					</div>
+					<div className="single-task-meta">
+						<span className="label">完成时间：</span>
+						<span className="single-task-finished">{task.finished}</span>
+					</div>
+					<div className="single-task-meta">
+						<span className="label">想说的话: </span>
+						<span className="single-task-thought">{task.thought}</span>
 					</div>
 				</div>
 			)
