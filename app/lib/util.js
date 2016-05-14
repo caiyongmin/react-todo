@@ -14,7 +14,7 @@ function numberPrefix(num) {
 }
 
 function moment(time) {
-	var obj = {};
+	let obj = {};
 	obj.Y = time.getFullYear()
 	obj.M = numberPrefix(time.getMonth() + 1)
 	obj.D = numberPrefix(time.getDate())

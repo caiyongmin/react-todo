@@ -35,3 +35,6 @@ node_modules
 # ignore css and javascript file in product
 product/css
 product/js
+
+# ignore IDEA auto file
+.idea
