@@ -9,15 +9,14 @@
 
 ```bash
 git clone https://github.com/caiyongmin/react-todo.git
-```
 
-```bash
 npm install
+
+npm run dev
+
 ```
 
-```bash
-npm run dev
-```
+页面打开后，打开移动端调试模式，体验更佳！
 
 ## 感谢
 
