@@ -5,7 +5,7 @@
   "main": "no",
   "scripts": {
     "dev": "webpack-dev-server --progress --inline --hot --devtool --colors --content-base build/",
-    "product": "webpack -p --progress --config webpack.production.config.js"
+    "prod": "webpack -p --progress --config webpack.prod.config.js"
   },
   "repository": {
     "type": "git",
