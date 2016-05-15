@@ -16,6 +16,7 @@ export default class AppRoute extends React.Component {
         this.hidePop = this.hidePop.bind(this)
         this.addTask = this.addTask.bind(this)
         this.finishTask = this.finishTask.bind(this)
+        this.deleteTask = this.deleteTask.bind(this)
         this.storage = Storage()
     }
 
@@ -89,6 +90,30 @@ export default class AppRoute extends React.Component {
         this.storage.set('tasks', tasks)
     }
 
+    deleteTask(id) {
+        let tasks = this.state.tasks
+        let task = null
+
+        tasks.forEach(function (item, index) {
+            if (item.id == id) {
+                task = item
+            }
+        })
+
+        if (!task) {
+            return
+        }
+
+        tasks.forEach(function (item, index) {
+            if (item.id == id) {
+                tasks.splice(index, 1)
+            }
+        })
+
+        this.setState({tasks: tasks})
+        this.storage.set('tasks', tasks)
+    }
+
     render() {
         return (
         <div>
@@ -99,26 +124,25 @@ export default class AppRoute extends React.Component {
             <div className="section-body">
 				{this.props.children && React.cloneElement(this.props.children, {
 	                tasks: this.state.tasks,
+                    deleteTask: this.deleteTask,
 	                finishTask: this.finishTask,
 	                showPop: this.showPop,
-	                hidePop: this.hidePop
+	                hidePop: this.hidePop,
 	            })}
 	            <AddItem addItem={this.addTask} showAddPop={this.state.showAddPop} hidePop={this.hidePop}></AddItem>
             </div>
             <div className="section-footer">
-            	<nav className="footer-menu">
-	                <ul>
-	                    <li>
-	                        <Link to={`/tasks`} activeClassName="active" className={'fa fa-tasks ' + (window.location.hash == '#/' ? 'active' : '')}></Link>
-	                    </li>
-	                    <li>
-	                        <Link to={`/tasks/complete`} activeClassName="active" className="fa fa-check-circle"></Link>
-	                    </li>
-	                    <li>
-	                        <Link to={`/tasks/uncomplete`} activeClassName="active" className="fa fa-clock-o"></Link>
-	                    </li>
-	                </ul>
-	            </nav>
+                <ul className="footer-menu">
+                    <li>
+                        <Link to={`/tasks`} activeClassName="active" className={'fa fa-tasks ' + (window.location.hash == '#/' ? 'active' : '')}></Link>
+                    </li>
+                    <li>
+                        <Link to={`/tasks/complete`} activeClassName="active" className="fa fa-check-circle"></Link>
+                    </li>
+                    <li>
+                        <Link to={`/tasks/uncomplete`} activeClassName="active" className="fa fa-clock-o"></Link>
+                    </li>
+                </ul>
             </div>
         </div>
         )

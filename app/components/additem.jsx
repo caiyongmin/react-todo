@@ -25,13 +25,13 @@ export default class AddItem extends React.Component {
 		let desc = this.refs.taskDesc.value.trim()
 
 		if (!name) {
-			alert('Please input task name')
+			alert('请输入任务名称...')
 			this.refs.taskName.focus()
 			return
 		}
 
 		if (!desc) {
-			alert('Please input task desc')
+			alert('请输入任务描述...')
 			this.refs.taskDesc.focus()
 			return
 		}
