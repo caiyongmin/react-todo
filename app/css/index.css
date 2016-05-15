@@ -117,7 +117,10 @@ button, button:focus {
     top: 0;
     left: 0;
     width: 100%;
+    border-bottom: #ddd;
     background-color: #31bb6b;
+    -webkit-box-shadow: 0 1px 5px #aaa;
+    box-shadow: 0 1px 5px #aaa;
     color: #fff;
     z-index: 1;
 }
