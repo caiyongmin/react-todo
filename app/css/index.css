@@ -1,6 +1,12 @@
 /* common css */
 body {
+    font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
     color: #333;
+}
+
+* {
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color:rgba(255, 255, 255, 0); /*ios android去除自带阴影的样式*/
 }
 
 button, button:focus {
@@ -109,6 +115,19 @@ button, button:focus {
     }
 }
 
+.clearfix:before, .clearfix:after {
+    content: '';
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
 /* common css */
 
 /* section-header css */
@@ -125,7 +144,7 @@ button, button:focus {
     z-index: 1;
 }
 
-.section-header .icon-add {
+.section-header .icon-app {
     position: absolute;
     right: 12px;
     top: 0;
@@ -168,11 +187,11 @@ button, button:focus {
 
 .model {
     opacity: 0;
-    position: absolute;
-    left: 0;
+    position: fixed;
     top: 0;
-    width: 100%;
-    height: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
     background-color: rgba(0, 0, 0, .3);
     -webkit-transition: all .4s ease;
     -o-transition: all .4s ease;
@@ -393,6 +412,24 @@ button, button:focus {
 
 .single-task-thought-input .btn {
     margin-top: 10px;
+}
+
+.icon-add-wrap {
+    position: fixed;
+    bottom: 100px;
+    right: 12px;
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    background-color: rgba(49, 187, 107, .9);
+    line-height: 38px;
+    text-align: center;
+}
+
+.icon-add-wrap .icon-add {
+    font-size: 1.25rem;
+    color: #fff;
+    font-weight: 400;
 }
 
 /* section-body css */
