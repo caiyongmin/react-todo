@@ -119,7 +119,7 @@ export default class AppRoute extends React.Component {
         <div>
             <div className="section-header">
                 <h2 className="header-title">任务清单</h2>
-                <i className="fa fa-calendar icon-app" onClick={this.showPop}></i>
+                <i className="fa fa-calendar icon-app"></i>
             </div>
             <div id="section-body" className="section-body">
 				{this.props.children && React.cloneElement(this.props.children, {
