@@ -119,9 +119,9 @@ export default class AppRoute extends React.Component {
         <div>
             <div className="section-header">
                 <h2 className="header-title">任务清单</h2>
-                <i className="icon-add fa fa-plus" onClick={this.showPop}></i>
+                <i className="fa fa-calendar icon-app" onClick={this.showPop}></i>
             </div>
-            <div className="section-body">
+            <div id="section-body" className="section-body">
 				{this.props.children && React.cloneElement(this.props.children, {
 	                tasks: this.state.tasks,
                     deleteTask: this.deleteTask,
@@ -129,10 +129,11 @@ export default class AppRoute extends React.Component {
 	                showPop: this.showPop,
 	                hidePop: this.hidePop,
 	            })}
+                <div className="icon-add-wrap" onClick={this.showPop}><i className="fa fa-plus icon-add"></i></div>
 	            <AddItem addItem={this.addTask} showAddPop={this.state.showAddPop} hidePop={this.hidePop}></AddItem>
             </div>
             <div className="section-footer">
-                <ul className="footer-menu">
+                <ul className="footer-menu clearfix">
                     <li>
                         <Link to={`/tasks`} activeClassName="active" className={'fa fa-tasks ' + (window.location.hash == '#/' ? 'active' : '')}></Link>
                     </li>

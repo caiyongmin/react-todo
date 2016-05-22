@@ -5,6 +5,10 @@
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>TodoList</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capale" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="format-detection" content="email=no">
 	<link rel="stylesheet" href="./css/all.css">
 </head>
 <body>
@@ -12,5 +16,10 @@
 
 	<script src="./js/vendors.js"></script>
 	<script src="./js/app.js"></script>
+	<script>
+		var clientHeight = document.documentElement.clientHeight
+		var sectionBody = document.getElementById('section-body')
+		sectionBody.style.minHeight = clientHeight - 100 + 'px'
+	</script>
 </body>
 </html>
