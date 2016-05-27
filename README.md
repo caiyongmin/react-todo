@@ -18,4 +18,8 @@ npm run dev
 
 页面打开后，打开移动端调试模式，体验更佳！也可通过手机浏览器浏览。
 
+## 感谢
+ 
+这个项目是参照[wengeek](https://github.com/wengeek)的[wengeek/TodoList](https://github.com/wengeek/TodoList)来写的，在此表示感谢！
+
 最后欢迎提 issue 给我！
