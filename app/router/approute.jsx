@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Link} from 'react-router'
+import {Link, IndexLink} from 'react-router'
 
 import AddItem from '../components/additem'
 import Storage from '../lib/localstorage'
@@ -135,7 +135,7 @@ export default class AppRoute extends React.Component {
             <div className="section-footer">
                 <ul className="footer-menu clearfix">
                     <li>
-                        <Link to={`/tasks`} activeClassName="active" className={'fa fa-tasks ' + (window.location.hash == '#/' ? 'active' : '')}></Link>
+                        <IndexLink to={`/`} activeClassName="active" className="fa fa-tasks"></IndexLink>
                     </li>
                     <li>
                         <Link to={`/tasks/complete`} activeClassName="active" className="fa fa-check-circle"></Link>

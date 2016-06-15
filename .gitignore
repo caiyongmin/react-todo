@@ -38,3 +38,6 @@ product/js
 
 # ignore IDEA auto file
 .idea
+
+# Mac temp store
+*.DS_Store

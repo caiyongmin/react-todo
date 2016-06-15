@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Router, Route, IndexRoute, Link, useRouterHistory} from 'react-router'
+import {Router, Route, IndexRoute, Link, useRouterHistory, browserHistory} from 'react-router'
 import {createHashHistory} from 'history'
 
 import AppRoute from './router/approute'
@@ -13,7 +13,7 @@ import NormalizeCSS from './css/normalize.css'
 let appHistory = useRouterHistory(createHashHistory)({ queryKey: false })
 
 ReactDOM.render(
-	<Router history={appHistory}>
+	<Router history={browserHistory}>
 		<Route path='/' component={AppRoute}>
 			<IndexRoute component={Tasks} />
 			<Route path='tasks(/:type)' component={Tasks} />
