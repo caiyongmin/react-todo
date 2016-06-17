@@ -18,6 +18,14 @@ npm run dev
 
 页面打开后，打开移动端调试模式，体验更佳！也可通过手机浏览器浏览。
 
+## 更新
+
+### 06.17
+
+- 使用 browserHistory 代替 hashHistory。
+- 更新 package.json 里面的 script 命令。
+- 根据 react-router 的资料，完成服务端渲染。
+
 ## 感谢
  
 这个项目是参照[wengeek](https://github.com/wengeek)的[wengeek/TodoList](https://github.com/wengeek/TodoList)来写的，在此表示感谢！
