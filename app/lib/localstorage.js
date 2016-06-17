@@ -7,9 +7,12 @@
 ;(function () {
 	'use strick'
 
-	let localStorage = window.localStorage
+	let localStorage;
 
 	function storage() {
+		if (!localStorage) {
+			localStorage = window.localStorage
+		}
 		function set(key, value) {
 			if (typeof value === 'object') {
 				value = JSON.stringify(value)
@@ -45,7 +48,7 @@
 		})
 	} else if (typeof module !== 'undefined' && module.exports) {
 		module.exports = storage
-	} else {
+	} else if (typeof window !== 'undefined') {
 		window.storage = storage
 	}
 

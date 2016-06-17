@@ -4,10 +4,13 @@
   "description": "build a todo list app use React and Webpack.",
   "main": "no",
   "scripts": {
-    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:env",
-    "start:dev": "webpack-dev-server --progress --inline --hot --devtool --colors --content-base build/",
-    "start:prod": "webpack -p --progress --config webpack.prod.config.js && node server.js",
-    "output:prod": "webpack -p --progress --config webpack.prod.config.js"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:dev": "webpack-dev-server --host 0.0.0.0 --progress --inline --hot --devtool --colors --content-base build/",
+    "start:prod": "npm run build && node ./server_render/server.bundle.js",
+    "build:client": "webpack --progress --config webpack.prod.config.js",
+    "build:server": "webpack --progress --config webpack.server.config.js",
+    "build": "npm run build:client && npm run build:server",
+    "output:prod": "webpack --progress --config webpack.prod.config.js"
   },
   "repository": {
     "type": "git",
@@ -45,6 +48,7 @@
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
+    "postcss-loader": "^0.9.1",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.10",

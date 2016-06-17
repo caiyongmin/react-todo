@@ -32,12 +32,16 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
-# ignore css and javascript file in product
+# ignore css and javascript file in product and server_render
 product/css
 product/js
+server_render/*
 
 # ignore IDEA auto file
 .idea
 
 # Mac temp store
 *.DS_Store
+
+# build file
+server.bundle.js

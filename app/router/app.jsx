@@ -17,10 +17,12 @@ export default class AppRoute extends React.Component {
         this.addTask = this.addTask.bind(this)
         this.finishTask = this.finishTask.bind(this)
         this.deleteTask = this.deleteTask.bind(this)
-        this.storage = Storage()
     }
 
     componentDidMount() {
+        if (!this.storage) {
+            this.storage = Storage()
+        }
         let tasks = this.storage.get('tasks') || []
         this.setState({'tasks': tasks})
     }
