@@ -401,10 +401,6 @@ button, button:focus {
     padding-left: 2px;
 }
 
-.single-task-thought {
-    line-height: 1.4;
-}
-
 .single-task-thought-input .input-textarea {
     height: 100px;
     margin-top: 10px;

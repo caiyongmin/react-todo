@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Link} from 'react-router'
+import {Link, IndexLink, browserHistory} from 'react-router'
 
 import AddItem from '../components/additem'
 import Storage from '../lib/localstorage'
@@ -19,6 +19,10 @@ export default class AppRoute extends React.Component {
         this.deleteTask = this.deleteTask.bind(this)
         this.storage = Storage()
     }
+
+    /*contextTypes: {
+        router: React.PropTypes.object.isRequired
+    }*/
 
     componentDidMount() {
         let tasks = this.storage.get('tasks') || []
@@ -56,7 +60,9 @@ export default class AppRoute extends React.Component {
         tasks.unshift(task)
         this.setState({tasks: tasks})
         this.storage.set('tasks', tasks)
+        browserHistory.push('/')
         this.hidePop()
+
     }
 
     finishTask(id, thought) {
@@ -135,7 +141,7 @@ export default class AppRoute extends React.Component {
             <div className="section-footer">
                 <ul className="footer-menu clearfix">
                     <li>
-                        <Link to={`/tasks`} activeClassName="active" className={'fa fa-tasks ' + (window.location.hash == '#/' ? 'active' : '')}></Link>
+                        <IndexLink to={`/`} activeClassName="active" className='fa fa-tasks'></IndexLink>
                     </li>
                     <li>
                         <Link to={`/tasks/complete`} activeClassName="active" className="fa fa-check-circle"></Link>

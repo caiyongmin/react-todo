@@ -38,3 +38,9 @@ product/js
 
 # ignore IDEA auto file
 .idea
+
+# ignore Mac store
+*.DS_Store
+
+# ignore folder
+server_render
