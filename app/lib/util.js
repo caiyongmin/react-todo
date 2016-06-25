@@ -13,7 +13,7 @@ function numberPrefix(num) {
 	}
 }
 
-function moment(time) {
+module.exports.moment = function moment(time) {
 	let obj = {};
 	obj.Y = time.getFullYear()
 	obj.M = numberPrefix(time.getMonth() + 1)
@@ -22,8 +22,4 @@ function moment(time) {
 	obj.m = numberPrefix(time.getMinutes())
 	obj.s = numberPrefix(time.getSeconds())
 	return obj
-}
-
-module.exports = {
-	moment: moment
 }
