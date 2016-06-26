@@ -14,13 +14,15 @@ module.exports = {
 		extensions: ['', '.js', '.jsx']
 	},
 	module: {
+		devtool: 'cheap-source-map',
 		loaders: [
 			{
 				test: /\.js[x]?$/,
 				exclude: /node_module/,
 				loader: 'babel-loader',
 				query: {
-					presets: ['es2015', 'react']
+					presets: ['es2015', 'react', 'stage-0'],
+					plugins: ['add-module-exports']
 				}
 			},
 			{
